@@ -1,0 +1,9 @@
+# filenames (and symlinks)
+homework_instructions.md
+package-lock.json
+git
+
+# .extensions
+
+# directories/
+node_modules
