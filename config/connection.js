@@ -27,7 +27,7 @@ connection.connect(function (mysqlError) {
         log(`mysqlError: ${mysqlError.stack}`)
         return
     }
-    log(`mysql id: ${connection.threadId} connected to host: ${process.env.MYSQL_HOST} on port: ${process.env.MYSQL_PORT}`)
+    log(`mysql id: ${connection.threadId} connected to host: ${process.env.MYSQL_HOST} on port: ${process.env.MYSQL_PORT}`);
 })
 
 // exports
