@@ -5,6 +5,6 @@ INSERT INTO burgers
     burger_name, devoured
     )
 VALUES
-    ('burger', 0),
+    ('hamburger', 0),
     ('cheeseburger', 0),
     ('tofu burger', 0);

@@ -2,10 +2,20 @@
 const log = console.log;
 
 const express = require("../server.js");
-const model = require("../models/burger.js");
+const db = require("../models/burger.js");
 
 const router = (app) => {
-    // 4. Create the `router` for the app
+    // http get
+    app.get("/api/burgers", (req, res) => {
+        db.getBurgers(req.body, (sqlResult) => {
+            log("burgers-controller:");
+            log(sqlResult);
+            res.json(sqlResult);
+        })
+    })
+    // http post
+
+    // http put
 }
 
 // exports

@@ -10,10 +10,11 @@ const orm = {
         const queryString = "SELECT * FROM ??";
         connection.query(queryString,
             [tableName],
-            function (mysqlError, mysqlResult) {
-                if (mysqlError) throw mysqlError;
-                log(mysqlResult);
-                cb(mysqlResult);
+            function (sqlError, sqlResult) {
+                if (sqlError) throw sqlError;
+                log("orm.selectAll:");
+                log(sqlResult);
+                cb(sqlResult);
             })
     },
     // insertOne()
@@ -26,11 +27,11 @@ const orm = {
                     [columnName]: value
                 }
             ],
-            function (mysqlError, mysqlResult) {
-                if (mysqlError) throw mysqlError;
-                log(mysqlResult);
-                log(`inserted ${mysqlResult.changedRows} row`);
-                cb(mysqlResult);
+            function (sqlError, sqlResult) {
+                if (sqlError) throw sqlError;
+                log(sqlResult);
+                log(`inserted ${sqlResult.changedRows} row`);
+                cb(sqlResult);
             }
         )
     },
@@ -47,11 +48,29 @@ const orm = {
                     [whereColumn]: whereValue
                 }
             ],
-            function (mysqlError, mysqlResult) {
-                if (mysqlError) throw mysqlError;
-                log(mysqlResult);
-                log(`updated ${mysqlResult.changedRows} row`);
-                cb(mysqlResult);
+            function (sqlError, sqlResult) {
+                if (sqlError) throw sqlError;
+                log(sqlResult);
+                log(`updated ${sqlResult.changedRows} row`);
+                cb(sqlResult);
+            }
+        )
+    },
+    // deleteOne()
+    deleteOne: function (tableName, columnName, value, cb) {
+        const queryString = "DELETE FROM ?? WHERE ?";
+        connection.query(queryString,
+            [
+                tableName,
+                {
+                    [columnName]: value
+                }
+            ],
+            function (sqlError, sqlResult) {
+                if (sqlError) throw sqlError;
+                log(sqlResult);
+                log(`deleted ${sqlResult.changedRows} rows`);
+                cb(sqlResult);
             }
         )
     }

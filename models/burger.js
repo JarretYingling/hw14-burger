@@ -3,33 +3,23 @@ const log = console.log;
 
 const orm = require("../config/orm.js");
 
-let tableName = "";
-let columnName = "";
-let value = "";
-let setColumn = "";
-let setValue = "";
-let whereColumn = "";
-let whereValue = "";
-
 // call ORM functions with burger input
 const model = {
     // SELECT * FROM ??
-    getBurgers: function () {
-        orm.selectAll(tableName, function () {
-            // orm query callback
-        })
+    getBurgers: (reqBody, cb) => {
+        orm.selectAll("burgers", cb);
     },
     // INSERT INTO ?? SET ?
-    addBurger: function () {
-        orm.insertOne(tableName, columnName, value, function () {
-            // orm query callback
-        })
+    addBurger: (reqBody, cb) => {
+        orm.insertOne("burgers", "burger_name", reqBody.burgerName, cb);
     },
     // UPDATE ?? SET ? WHERE ?
-    devourBurger: function () {
-        orm.updateOne(tableName, setColumn, setValue, whereColumn, whereValue, function () {
-            // orm query callback
-        })
+    devourBurger: (reqBody, cb) => {
+        orm.updateOne("burgers", "devoured", true, "burger_name", reqBody.burgerName, cb);
+    },
+    // DELETE ?? WHERE ?
+    vomitBurger: (req, cb) => {
+        orm.deleteOne("burgers", "burger_name", req.params.id, cb);
     }
 }
 
