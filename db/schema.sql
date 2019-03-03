@@ -3,8 +3,11 @@ CREATE DATABASE burgers_db;
 
 USE burgers_db;
 
+SET time_zone = 'US/Eastern';
+
 CREATE TABLE burgers(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     burger_name VARCHAR(255) UNIQUE NOT NULL,
-    devoured BOOLEAN NOT NULL DEFAULT 0
+    devoured BOOLEAN NOT NULL DEFAULT 0,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
