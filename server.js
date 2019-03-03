@@ -25,7 +25,8 @@ app.use(express.json());
 
 // configure express-handlebars
 app.engine("handlebars", hdb({
-    defaultLayout: "main"
+    defaultLayout: "main",
+    layoutsDir: path.join(__dirname, "views/layouts")
 }));
 app.set("view engine", "handlebars");
 

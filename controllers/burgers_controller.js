@@ -6,25 +6,15 @@ const db = require("../models/burger.js");
 const path = require("path");
 
 const router = (app) => {
-    /*
-    // http default
-    app.get("/", (req, res) => {
-        log(req.body);
-        res.sendFile(path.join(__dirname, "../public/assets/test.html"));
-    });
-    */
-    // http default
-    app.get("/", (req, res) => {
-        log(req.body);
-        res.render("index");
-    });
     // http get
-    app.get("/api/burgers", (req, res) => {
+    app.get("/", (req, res) => {
         log(req.body);
         db.getBurgers(req.body, (sqlResult) => {
             log("burgers-controller.getBurgers:");
             log(sqlResult);
-            res.json(sqlResult);
+            res.render("index", {
+                burgers: sqlResult
+            });
         });
     });
     // http post

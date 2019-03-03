@@ -17,7 +17,23 @@
 </head>
 
 <body>
-    {{{body}}}
+    <main id="main-container" class="container" role="main">
+
+        <section class="row">
+            <div class="col-12">
+                <img src="/assets/img/burger.png" alt="burger" class="mx-auto d-block">
+                <h1 class="text-center">Eat-Da-Burger</h1>
+            </div><!-- end row 1 col 1 -->
+        </section><!-- end row 1 -->
+
+        <!-- express-handlebars body injection -->
+        {{{body}}}
+
+    </main><!-- end main container -->
+
+    <footer class="container" role="content info">
+        <h6 class="text-center">Copyright &copy;</h6>
+    </footer>
 </body>
 
 </html>
