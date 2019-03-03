@@ -2,7 +2,7 @@
   "name": "hw14-burger",
   "version": "1.0.0",
   "description": "node npm express routing website with orm (object relational mapping) mysql database and express-handlebars html templates",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
