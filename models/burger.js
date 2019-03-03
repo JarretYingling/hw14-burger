@@ -11,15 +11,15 @@ const model = {
     },
     // INSERT INTO ?? SET ?
     addBurger: (reqBody, cb) => {
-        orm.insertOne("burgers", "burger_name", reqBody.burgerName, cb);
+        orm.insertOne("burgers", "burger_name", reqBody.burger_name, cb);
     },
     // UPDATE ?? SET ? WHERE ?
     devourBurger: (reqBody, cb) => {
-        orm.updateOne("burgers", "devoured", true, "burger_name", reqBody.burgerName, cb);
+        orm.updateOne("burgers", "devoured", true, "id", reqBody.id, cb);
     },
     // DELETE ?? WHERE ?
-    vomitBurger: (req, cb) => {
-        orm.deleteOne("burgers", "burger_name", req.params.id, cb);
+    vomitBurger: (reqBody, cb) => {
+        orm.deleteOne("burgers", "id", reqBody.id, cb);
     }
 }
 

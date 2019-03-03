@@ -18,36 +18,32 @@ const router = (app) => {
         });
     });
     // http post
-    app.post("/api/burgers", (req, res) => {
+    app.post("/", (req, res) => {
         log(JSON.parse(JSON.stringify(req.body)));
         db.addBurger(req.body, (sqlResult) => {
             log("burgers-controller.addBurger:");
             log(JSON.parse(JSON.stringify(sqlResult)));
-            res.render("index", {
-                burgers: sqlResult
-            });
+            res.redirect("/");
         });
     });
     // http put
-    app.put("/api/burgers", (req, res) => {
+    // form method only allows get or post
+    app.post("/put", (req, res) => {
         log(JSON.parse(JSON.stringify(req.body)));
         db.devourBurger(req.body, (sqlResult) => {
             log("burgers-controller.devourBurger:");
             log(JSON.parse(JSON.stringify(sqlResult)));
-            res.render("index", {
-                burgers: sqlResult
-            });
+            res.redirect("/");
         });
     });
     // http delete
-    app.delete("/api/burgers/:id", (req, res) => {
+    // form method only allows get or post
+    app.post("/delete", (req, res) => {
         log(JSON.parse(JSON.stringify(req.body)));
-        db.vomitBurger(req.params.id, (sqlResult) => {
+        db.vomitBurger(req.body, (sqlResult) => {
             log("burgers-controller.vomitBurger:");
             log(JSON.parse(JSON.stringify(sqlResult)));
-            res.render("index", {
-                burgers: sqlResult
-            });
+            res.redirect("/");
         });
     });
 };

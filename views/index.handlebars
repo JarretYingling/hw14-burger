@@ -6,8 +6,9 @@
                 {{#unless this.devoured}}
                 <li>
                     <h6 class="text-center">{{this.id}}. {{this.burger_name}}</h6>
-                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <form action="/put" method="POST">
                         <input type="hidden" name="devoured" value="true">
+                        <input type="hidden" name="id" value="{{this.id}}">
                         <button class="btn btn-primary mx-auto d-block" type="submit">Devour!</button>
                     </form>
                     </p>
@@ -21,20 +22,25 @@
             <form class="create-update-form" action="/" method="POST">
                 <div class="form-group">
                     <p class="text-center">Enter a burger name and click Submit to order</p>
-                    <input class="mx-auto d-block" type="text" id="ca" name="burger_name">
+                    <input class="mx-auto d-block" type="text" id="burger_name" name="burger_name">
                 </div>
                 <button class="btn btn-primary mx-auto d-block" type="submit">Submit</button>
             </form>
         </div><!-- end row 2 col 2 -->
         <div class="col-12 col-md-4">
             <h2 class="text-center">Burgers devoured!</h2>
+            <ul>
             {{#each burgers}}
             {{#if this.devoured}}
             <li>
-                {{this.id}}
-                {{this.burger_name}}
+                <h6 class="text-center">{{this.id}}. {{this.burger_name}}</h6>
+                <form action="/delete" method="POST">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <button class="btn btn-primary mx-auto d-block" type="submit">Vomit!</button>
+                </form>
             </li>
             {{/if}}
             {{/each}}
+            </ul>
         </div><!-- end row 2 col 3 -->
     </section><!-- end row 2 -->
