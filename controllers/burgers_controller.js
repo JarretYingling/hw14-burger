@@ -11,7 +11,7 @@ const router = (app) => {
         log(req.body);
         db.getBurgers(req.body, (sqlResult) => {
             log("burgers-controller.getBurgers:");
-            log(sqlResult);
+            log(JSON.parse(JSON.stringify(sqlResult)));
             res.render("index", {
                 burgers: sqlResult
             });
@@ -19,29 +19,35 @@ const router = (app) => {
     });
     // http post
     app.post("/api/burgers", (req, res) => {
-        log(req.body);
+        log(JSON.parse(JSON.stringify(req.body)));
         db.addBurger(req.body, (sqlResult) => {
             log("burgers-controller.addBurger:");
-            log(sqlResult);
-            res.json(sqlResult);
+            log(JSON.parse(JSON.stringify(sqlResult)));
+            res.render("index", {
+                burgers: sqlResult
+            });
         });
     });
     // http put
     app.put("/api/burgers", (req, res) => {
-        log(req.body);
+        log(JSON.parse(JSON.stringify(req.body)));
         db.devourBurger(req.body, (sqlResult) => {
             log("burgers-controller.devourBurger:");
-            log(sqlResult);
-            res.json(sqlResult);
+            log(JSON.parse(JSON.stringify(sqlResult)));
+            res.render("index", {
+                burgers: sqlResult
+            });
         });
     });
     // http delete
     app.delete("/api/burgers/:id", (req, res) => {
-        log(req.body);
+        log(JSON.parse(JSON.stringify(req.body)));
         db.vomitBurger(req.params.id, (sqlResult) => {
             log("burgers-controller.vomitBurger:");
-            log(sqlResult);
-            res.json(sqlResult);
+            log(JSON.parse(JSON.stringify(sqlResult)));
+            res.render("index", {
+                burgers: sqlResult
+            });
         });
     });
 };

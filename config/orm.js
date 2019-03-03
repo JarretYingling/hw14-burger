@@ -13,7 +13,7 @@ const orm = {
             function (sqlError, sqlResult) {
                 if (sqlError) throw sqlError;
                 log("orm.selectAll:");
-                log(sqlResult);
+                log(JSON.parse(JSON.stringify(sqlResult)));
                 cb(sqlResult);
             })
     },
@@ -29,7 +29,8 @@ const orm = {
             ],
             function (sqlError, sqlResult) {
                 if (sqlError) throw sqlError;
-                log(sqlResult);
+                log("orm.insertOne:");
+                log(JSON.parse(JSON.stringify(sqlResult)));
                 log(`inserted ${sqlResult.changedRows} row`);
                 cb(sqlResult);
             }
@@ -50,7 +51,8 @@ const orm = {
             ],
             function (sqlError, sqlResult) {
                 if (sqlError) throw sqlError;
-                log(sqlResult);
+                log("orm.updateOne:");
+                log(JSON.parse(JSON.stringify(sqlResult)));
                 log(`updated ${sqlResult.changedRows} row`);
                 cb(sqlResult);
             }
@@ -68,7 +70,8 @@ const orm = {
             ],
             function (sqlError, sqlResult) {
                 if (sqlError) throw sqlError;
-                log(sqlResult);
+                log("orm.deleteOne:");
+                log(JSON.parse(JSON.stringify(sqlResult)));
                 log(`deleted ${sqlResult.changedRows} rows`);
                 cb(sqlResult);
             }
