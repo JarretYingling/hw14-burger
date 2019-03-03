@@ -1,25 +1,28 @@
 "use strict";
 const log = console.log
 
-// require dotenv
-const dotenv = require("dotenv").config({
-    path: "git/.env"
-});
-// handle dotenv error
-if (dotenv.error) {
-    throw dotenv.error;
-}
-
 // require mysql
 const mysql = require("mysql");
 // creat mysql connection
-const connection = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    port: process.env.MYSQL_PORT,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: "burgers_db"
-})
+
+
+
+if (process.env.JAWSDB_URL) {
+    const connection = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
+    // require dotenv
+    const dotenv = require("dotenv").config({
+        path: "git/.env"
+    })
+    if (dotenv.error) throw dotenv.error;
+    const connection = mysql.createConnection({
+        host: process.env.MYSQL_HOST,
+        port: process.env.MYSQL_PORT,
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: "burgers_db"
+    })
+}
 
 // connect to mysql
 connection.connect(function (mysqlError) {
